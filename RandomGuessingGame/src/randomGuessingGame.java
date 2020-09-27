@@ -3,7 +3,7 @@ import java.util.*;
 public class randomGuessingGame {
     public static void main(String[] args) {
         menu();
-        usrGuess(generateRandomNumber());
+
     }
 
 
@@ -12,15 +12,18 @@ public class randomGuessingGame {
     /*METHODS*/
     public static void menu(){
         Scanner userSelection = new Scanner(System.in);
-
+        System.out.println("****************************");
         System.out.println("Do you want to play?");
         System.out.println("\t1 - Yes, lets do this!");
         System.out.println("\t2 - NO, thank you.");
+        System.out.print("Your Selection: ");
 
         int choice = userSelection.nextInt();
         switch(choice){
             case 1:
-                generateRandomNumber();
+             //   generateRandomNumber();
+                int numberToGuess = generateRandomNumber();
+                usrGuess(numberToGuess);
                 break;
             case 2:
                 System.out.println("Ok, see you later!");
@@ -29,12 +32,14 @@ public class randomGuessingGame {
             default:
                 break;
         }
+        menu();
+
     }
 
 
     public static void usrGuess(int numberToGuess){
         Scanner userNumber = new Scanner(System.in);
-        System.out.println("Enter a number to guess.");
+        System.out.println("Guess a number between 0 & 100");
         int guess = userNumber.nextInt();
 
         while(guess != numberToGuess){
@@ -49,7 +54,7 @@ public class randomGuessingGame {
             guess = userNumber.nextInt();
         }
         System.out.println("You Got It!!");
-        menu();
+
     }
 
     public static int generateRandomNumber() {
@@ -60,7 +65,7 @@ public class randomGuessingGame {
             int number = randomNum.nextInt(101);
             numberRange.add(number);
         }
-        return numberRange.get(randomNum.nextInt(numberRange.size()));
+        return numberRange.get(randomNum.nextInt(numberRange.size()));//returns a random element of the arraylist
     }
 
 
